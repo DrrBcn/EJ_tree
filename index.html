@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Environmental Justice Decision Tree</title>
+  <meta name="theme-color" content="#166244">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <style>
+    :root{
+      --bg: #0b1f16;
+      --fg: #f7fff9;
+      --muted: #dff5e6;
+      --accent1: #1e8a4a;
+      --accent2: #38b26a;
+      --accent3: #a8e6bf;
+      --focus: #ffee58;
+      --radius: 18px;
+      --shadow: 0 6px 18px rgba(0,0,0,.25);
+      --maxw: 760px;
+    }
+    html, body { height: 100%; }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, 'Helvetica Neue', Arial;
+      color: var(--fg);
+      background: linear-gradient(160deg, #0e2a1f, #124431 40%, #166244 85%);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    .app{
+      max-width: var(--maxw);
+      margin: 0 auto;
+      min-height: 100dvh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      padding: 12px;
+      gap: 12px;
+    }
+    header{ display:flex;align-items:center;justify-content:space-between;gap:12px; }
+    .brand{ display:flex;align-items:center;gap:12px; }
+    .logo{ width:40px;height:40px;border-radius:12px;
+      background: conic-gradient(from 220deg, var(--accent3), var(--accent2), var(--accent1)); box-shadow:var(--shadow); }
+    h1{ font-size: clamp(1.1rem, 1rem + 1.2vw, 1.6rem); margin:0; }
+    .lang-switch{ display:flex;gap:8px; }
+    .lang-btn{ background: rgba(255,255,255,.1); border: 2px solid transparent; color: var(--fg);
+      padding: 10px 14px; border-radius: 999px; font-weight: 700; cursor: pointer; }
+    .lang-btn[aria-pressed="true"], .lang-btn:focus-visible{ border-color: var(--focus); outline: none; }
+    main{ position: relative; overflow: hidden; }
+    .screen{ position:absolute; inset:0; overflow-y:auto; padding:6px 0 84px;
+      opacity:0; pointer-events:none; transform: translateY(12px); transition: opacity .28s ease, transform .28s ease; }
+    .screen.active{ opacity:1; transform:translateY(0); pointer-events:auto; }
+    .card{ background: rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); border-radius: var(--radius);
+      box-shadow: var(--shadow); padding:16px; }
+    .big{ font-size: clamp(1.15rem, 1rem + 1.4vw, 1.6rem); font-weight: 800; line-height: 1.25; }
+    .muted{ color: var(--muted); opacity:.92; }
+    .grid{ display:grid; gap:12px; grid-template-columns:1fr; }
+    @media (min-width:420px){ .grid{ grid-template-columns:1fr 1fr; } }
+    @media (min-width:680px){ .grid{ grid-template-columns:1fr 1fr 1fr; } }
+    .btn{ display:block; text-align:left; width:100%; background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.05));
+      border:2px solid rgba(255,255,255,.18); border-radius: var(--radius); padding:18px 16px;
+      font-size: clamp(1rem, 0.95rem + 0.8vw, 1.2rem); color: var(--fg); cursor:pointer; box-shadow: var(--shadow); }
+    .btn:active{ transform: translateY(1px); }
+    .btn:focus-visible{ outline: 3px solid var(--focus); outline-offset: 3px; }
+    .pri{ border-color: var(--accent3); background: linear-gradient(180deg, rgba(168,230,191,.25), rgba(168,230,191,.08)); }
+    .rec{ display:flex; flex-direction:column; gap:8px; }
+    .label{ align-self:flex-start; font-weight:900; font-size:.82rem; letter-spacing:.02em; padding:6px 10px;
+      border-radius:999px; background: var(--accent2); color:#052012; }
+    .agency{ font-size:1.05rem; font-weight:800; }
+    .purpose, .engage{ font-size:1rem; }
+    .kicker{ font-size:.9rem; text-transform:uppercase; letter-spacing:.03em; opacity:.9; }
+    footer{ position:sticky; bottom:0; left:0; right:0;
+      background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.35) 35%, rgba(0,0,0,.6));
+      padding: 8px 0 6px; backdrop-filter: blur(6px); }
+    .footer-inner{ width:100%; max-width: var(--maxw); margin:0 auto; padding:0 12px; display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .small-btn{ text-align:center; padding:16px 12px; border-radius:14px; font-weight:800;
+      border:2px solid rgba(255,255,255,.18); background: rgba(255,255,255,.12); color: var(--fg); }
+    .small-btn:focus-visible{ outline: 3px solid var(--focus); outline-offset: 3px; }
+    .hint{ font-size:.95rem; color: var(--muted); margin-top: 10px; }
+    .lang-grid{ display:grid; gap:12px; grid-template-columns: 1fr; }
+    .lang-choice{ text-align:center; }
+  </style>
+</head>
+<body>
+  <div class="app" role="application" aria-label="Environmental Justice Decision Helper">
+    <header>
+      <div class="brand" aria-hidden="true">
+        <div class="logo" role="img" aria-label="Leaf logo"></div>
+        <div>
+          <div class="kicker">Environmental Justice</div>
+          <h1 id="appTitle">Decision Tree</h1>
+        </div>
+      </div>
+      <div class="lang-switch" role="group" aria-label="Language (header switch)">
+        <button class="lang-btn" id="enBtn" aria-pressed="true">English</button>
+        <button class="lang-btn" id="esBtn" aria-pressed="false">Español</button>
+      </div>
+    </header>
+
+    <main>
+      <!-- Screen 0: Language selection (first step) -->
+      <section class="screen active" id="lang" aria-labelledby="langHead">
+        <div class="card">
+          <div class="big" id="langHead">Choose your language</div>
+          <p class="muted" id="langCopy">Elige tu idioma. We will show every question in your language.</p>
+        </div>
+        <div class="lang-grid" style="margin-top:12px;">
+          <button class="btn pri lang-choice" id="chooseEN">English</button>
+          <button class="btn pri lang-choice" id="chooseES">Español</button>
+        </div>
+        <div class="hint" id="langHint">You can change language later from the header.</div>
+      </section>
+
+      <!-- Screen 1: Welcome (optional) -->
+      <section class="screen" id="welcome" aria-labelledby="welcomeHead">
+        <div class="card">
+          <div class="big" id="welcomeHead">Welcome!</div>
+          <p class="muted" id="welcomeCopy">Find the right agency for your issue in 3 taps. One question per screen. No jargon.</p>
+          <div class="hint" id="welcomeHint">Tap below to continue.</div>
+        </div>
+        <div class="card" style="margin-top:12px;">
+          <div class="big" id="startTitle">Start</div>
+          <button class="btn pri" id="startBtn" aria-describedby="startDesc">Get started</button>
+          <div class="hint" id="startDesc">Mobile‑first, large buttons, bilingual support.</div>
+        </div>
+      </section>
+
+      <!-- Screen 2: Problem Selection -->
+      <section class="screen" id="problems" aria-labelledby="probHead">
+        <div class="card">
+          <div class="big" id="probHead">What do you need help with?</div>
+          <p class="muted" id="probCopy">Pick the option that best matches your situation.</p>
+        </div>
+        <div id="problemGrid" class="grid" style="margin-top:12px;">
+          <!-- buttons injected here -->
+        </div>
+      </section>
+
+      <!-- Screen 3: Recommendations -->
+      <section class="screen" id="results" aria-labelledby="resHead">
+        <div class="card">
+          <div class="big" id="resHead">Who to contact</div>
+          <p class="muted" id="resCopy">Start with the first agency below, then contact the others in order. If urgent, you can contact all of them.</p>
+        </div>
+        <div id="recList" style="display:grid; gap:12px; margin-top:12px;"></div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <button id="backBtn" class="small-btn" aria-label="Go back">◀︎ <span id="backTxt">Back</span></button>
+        <button id="restartBtn" class="small-btn" aria-label="Start over"><span id="restartTxt">Start over</span> ⟲</button>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // --- PWA registration ---
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js');
+      });
+    }
+
+    // --- TEXT (Bilingual) ---
+    const TXT = {
+      en: {
+        appTitle: 'Decision Tree',
+        langHead: 'Choose your language',
+        langCopy: 'Elige tu idioma. We will show every question in your language.',
+        langHint: 'You can change language later from the header.',
+        welcomeHead: 'Welcome!',
+        welcomeCopy: 'Find the right agency for your issue in 3 taps. One question per screen. No jargon.',
+        welcomeHint: 'Tap below to continue.',
+        startTitle: 'Start',
+        startBtn: 'Get started',
+        probHead: 'What do you need help with?',
+        probCopy: 'Pick the option that best matches your situation.',
+        resHead: 'Who to contact',
+        resHeadFor: topic => `Who to contact for: ${topic}`,
+        resCopy: 'Start with the first agency below, then contact the others in order. If urgent, you can contact all of them.',
+        back: 'Back',
+        restart: 'Start over',
+        labels: {
+          primary: 'PRIMARY CONTACT',
+          startHere: 'START HERE',
+          localFirst: 'LOCAL FIRST',
+          next: 'NEXT'
+        },
+        problems: [
+          {id:'air', label:'Bad smells or air pollution from factories/highways'},
+          {id:'noise', label:'Excessive noise (traffic, construction, equipment)'},
+          {id:'water', label:'Dirty or unsafe drinking water'},
+          {id:'housing', label:'Housing problems — rent, eviction, unsafe conditions'},
+          {id:'mobilehome', label:'Issues in my mobile home park (water, sewage, safety, landlord)'},
+          {id:'work', label:'Workplace safety or unfair wages'},
+          {id:'oilgas', label:'Oil/gas sites causing problems near my home'},
+          {id:'utilities', label:'High utility bills or power company issues'},
+          {id:'schools', label:'Environmental problems at schools'},
+          {id:'transport', label:'Highway projects or transportation pollution'},
+          {id:'general', label:'Other and general environmental concerns'}
+        ]
+      },
+      es: {
+        appTitle: 'Árbol de Decisión',
+        langHead: 'Elige tu idioma',
+        langCopy: 'Choose your language. Mostraremos todo en tu idioma.',
+        langHint: 'Puedes cambiar el idioma después en el encabezado.',
+        welcomeHead: '¡Bienvenid@!',
+        welcomeCopy: 'Encuentra la agencia adecuada en 3 toques. Una pregunta por pantalla. Sin jerga.',
+        welcomeHint: 'Toca abajo para continuar.',
+        startTitle: 'Comenzar',
+        startBtn: 'Empezar',
+        probHead: '¿Con qué necesitas ayuda?',
+        probCopy: 'Elige la opción que más se acerque a tu situación.',
+        resHead: '¿A quién contactar?',
+        resHeadFor: topic => `¿A quién contactar para: ${topic}?`,
+        resCopy: 'Empieza con la primera agencia y luego contacta a las demás en orden. Si es urgente, puedes contactar a todas.',
+        back: 'Atrás',
+        restart: 'Reiniciar',
+        labels: {
+          primary: 'CONTACTO PRINCIPAL',
+          startHere: 'EMPIEZA AQUÍ',
+          localFirst: 'PRIMERO LOCAL',
+          next: 'SIGUIENTE'
+        },
+        problems: [
+          {id:'air', label:'Malos olores o contaminación del aire de fábricas/autopistas'},
+          {id:'noise', label:'Ruido excesivo (tráfico, obras, maquinaria)'},
+          {id:'water', label:'Agua potable sucia o insegura'},
+          {id:'housing', label:'Problemas de vivienda — renta, desalojo, condiciones inseguras'},
+          {id:'mobilehome', label:'Problemas en mi parque de casas móviles (agua, alcantarillado, seguridad, arrendador)'},
+          {id:'work', label:'Seguridad laboral o salarios injustos'},
+          {id:'oilgas', label:'Sitios de petróleo/gas causando problemas cerca de mi casa'},
+          {id:'utilities', label:'Facturas altas o problemas con la compañía de servicios'},
+          {id:'schools', label:'Problemas ambientales en escuelas'},
+          {id:'transport', label:'Proyectos viales o contaminación del transporte'},
+          {id:'general', label:'Otras y generales preocupaciones ambientales'}
+        ]
+      }
+    };
+
+    // --- DATA state (loaded from data.json) ---
+    let AGENCIES = [];
+    let PRIORITY_ORDER = ['City','County','State'];
+
+    async function loadData() {
+      try {
+        const res = await fetch('./data.json', {cache: 'no-store'});
+        const data = await res.json();
+        AGENCIES = data.agencies || [];
+        PRIORITY_ORDER = data.priorityOrder || PRIORITY_ORDER;
+      } catch(e) {
+        console.error('Failed to load data.json', e);
+      }
+      // build initial UI once data is ready
+      buildProblems();
+    }
+
+    // --- UI state ---
+    let lang = 'en';
+    let selectedProblem = null;
+    const qs = sel => document.querySelector(sel);
+
+    function setLang(next){
+      lang = next;
+      // toggle header buttons
+      document.getElementById('enBtn').setAttribute('aria-pressed', next==='en');
+      document.getElementById('esBtn').setAttribute('aria-pressed', next==='es');
+      // swap text
+      document.getElementById('appTitle').textContent = TXT[next].appTitle;
+      document.getElementById('langHead').textContent = TXT[next].langHead;
+      document.getElementById('langCopy').textContent = TXT[next].langCopy;
+      document.getElementById('langHint').textContent = TXT[next].langHint;
+      document.getElementById('welcomeHead').textContent = TXT[next].welcomeHead;
+      document.getElementById('welcomeCopy').textContent = TXT[next].welcomeCopy;
+      document.getElementById('welcomeHint').textContent = TXT[next].welcomeHint;
+      document.getElementById('startTitle').textContent = TXT[next].startTitle;
+      document.getElementById('startBtn').textContent = TXT[next].startBtn;
+      document.getElementById('probHead').textContent = TXT[next].probHead;
+      document.getElementById('probCopy').textContent = TXT[next].probCopy;
+      document.getElementById('resHead').textContent = TXT[next].resHead;
+      document.getElementById('resCopy').textContent = TXT[next].resCopy;
+      document.getElementById('backTxt').textContent = TXT[next].back;
+      document.getElementById('restartTxt').textContent = TXT[next].restart;
+      // rebuild problems in this language
+      buildProblems();
+    }
+
+    function show(id){
+      document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+      qs('#'+id).classList.add('active');
+    }
+
+    function buildProblems(){
+      const grid = qs('#problemGrid');
+      if (!grid) return;
+      grid.innerHTML = '';
+      (TXT[lang].problems || []).forEach(p=>{
+        const b = document.createElement('button');
+        b.className = 'btn';
+        b.textContent = p.label;
+        b.setAttribute('data-problem', p.id);
+        b.addEventListener('click', ()=> selectProblem(p.id, p.label));
+        grid.appendChild(b);
+      });
+    }
+
+    function selectProblem(problemId, problemLabel){
+      selectedProblem = { id: problemId, label: problemLabel };
+      const candidates = AGENCIES.filter(a=> Array.isArray(a.topics) && a.topics.includes(problemId));
+      candidates.sort((a,b)=> PRIORITY_ORDER.indexOf(a.level) - PRIORITY_ORDER.indexOf(b.level));
+      renderRecs(candidates.slice(0, 6));
+      const resHead = qs('#resHead');
+      resHead.textContent = (TXT[lang].resHeadFor ? TXT[lang].resHeadFor(problemLabel) : TXT[lang].resHead);
+      show('results');
+    }
+
+    function labelBadge(a, index){
+      const L = TXT[lang].labels;
+      const parts = [];
+      if(index === 0) parts.push(L.startHere); else parts.push(L.next);
+      if(a.label === 'primary') parts.push(L.primary);
+      if(a.label === 'localFirst' && index !== 0) parts.push(L.localFirst);
+      return parts.join(' • ');
+    }
+
+    function renderRecs(list){
+      const box = qs('#recList');
+      box.innerHTML = '';
+      document.getElementById('resCopy').textContent = TXT[lang].resCopy;
+      list.forEach((a, i)=>{
+        const item = document.createElement('div');
+        item.className = 'card rec';
+        const tag = document.createElement('div');
+        tag.className = 'label';
+        tag.textContent = labelBadge(a, i);
+        const title = document.createElement('div');
+        title.className = 'agency';
+        title.textContent = `${i+1}. ${a.name} — ${a.level}`;
+        const purpose = document.createElement('div');
+        purpose.className = 'purpose';
+        purpose.innerHTML = `<strong>${lang==='en'?'Why':'Por qué'}:</strong> ${a.purpose}`;
+        const engage = document.createElement('div');
+        engage.className = 'engage';
+        engage.innerHTML = `<strong>${lang==='en'?'How to engage':'Cómo participar'}:</strong> ${a.engage}`;
+        item.append(tag,title,purpose,engage);
+        box.appendChild(item);
+      });
+    }
+
+    // Nav controls
+    const historyStack = ['lang'];
+    function goto(next){ historyStack.push(next); show(next); }
+    function back(){ if(historyStack.length>1){ historyStack.pop(); show(historyStack.at(-1)); } }
+    function restart(){ historyStack.splice(0, historyStack.length, 'lang'); show('lang'); }
+
+    // Events
+    qs('#enBtn').addEventListener('click', ()=> setLang('en'));
+    qs('#esBtn').addEventListener('click', ()=> setLang('es'));
+    qs('#chooseEN').addEventListener('click', ()=> { setLang('en'); goto('problems'); });
+    qs('#chooseES').addEventListener('click', ()=> { setLang('es'); goto('problems'); });
+    qs('#startBtn').addEventListener('click', ()=> { goto('problems'); });
+    qs('#backBtn').addEventListener('click', back);
+    qs('#restartBtn').addEventListener('click', restart);
+
+    // touch responsiveness
+    document.addEventListener('touchstart', ()=>{}, {passive:true});
+
+    // Init
+    setLang('en');
+    loadData();
+  </script>
+</body>
+</html>

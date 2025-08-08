@@ -1,0 +1,329 @@
+{
+  "agencies": [
+    {
+      "id": "ejo",
+      "level": "State",
+      "topics": [
+        "general",
+        "air",
+        "water",
+        "oilgas",
+        "housing",
+        "schools",
+        "transport",
+        "mobilehome"
+      ],
+      "name": "Environmental Justice Ombudsperson",
+      "label": "primary",
+      "purpose": "The neutral party for EJ complaints against CDPHE.",
+      "engage": "File a formal grievance via the EJ Grievance Process website."
+    },
+    {
+      "id": "ejab",
+      "level": "State",
+      "topics": [
+        "general"
+      ],
+      "name": "EJ Advisory Board",
+      "label": null,
+      "purpose": "Advises the state on EJ policy.",
+      "engage": "Provide public comment at regular meetings to influence statewide strategy."
+    },
+    {
+      "id": "aqcc",
+      "level": "State",
+      "topics": [
+        "air",
+        "transport",
+        "oilgas",
+        "schools",
+        "general"
+      ],
+      "name": "Air Quality Control Commission (AQCC)",
+      "label": null,
+      "purpose": "Sets statewide air pollution regulations; relevant to cumulative air impacts.",
+      "engage": "Testify at public rulemaking hearings."
+    },
+    {
+      "id": "wqcc",
+      "level": "State",
+      "topics": [
+        "water",
+        "schools",
+        "general",
+        "mobilehome"
+      ],
+      "name": "Water Quality Control Commission (WQCC)",
+      "label": null,
+      "purpose": "Sets water quality standards to protect drinking water.",
+      "engage": "Provide comment at public rulemaking hearings."
+    },
+    {
+      "id": "ecmc",
+      "level": "State",
+      "topics": [
+        "oilgas"
+      ],
+      "name": "Energy & Carbon Management Commission (ECMC)",
+      "label": "primary",
+      "purpose": "Regulates oil, gas, and geothermal sites; frequent EJ concerns.",
+      "engage": "File a complaint or comment on permits via the ECMC website."
+    },
+    {
+      "id": "puc",
+      "level": "State",
+      "topics": [
+        "utilities",
+        "mobilehome"
+      ],
+      "name": "Public Utilities Commission (PUC)",
+      "label": "primary",
+      "purpose": "Regulates utilities including energy costs and power plant siting.",
+      "engage": "Comment on utility cases at public hearings."
+    },
+    {
+      "id": "dola",
+      "level": "State",
+      "topics": [
+        "housing",
+        "mobilehome"
+      ],
+      "name": "Division of Housing (DOLA)",
+      "label": "primary",
+      "purpose": "Addresses fair housing, healthy housing conditions, and mobile home park issues.",
+      "engage": "Access landlord–tenant resources, mobile home park programs, and complaint forms on their website."
+    },
+    {
+      "id": "cdot",
+      "level": "State",
+      "topics": [
+        "transport",
+        "noise"
+      ],
+      "name": "Department of Transportation (CDOT)",
+      "label": null,
+      "purpose": "Manages highway projects which can create traffic noise and pollution.",
+      "engage": "Comment on project plans through the public involvement portal."
+    },
+    {
+      "id": "cdphe",
+      "level": "State",
+      "topics": [
+        "air",
+        "water",
+        "general",
+        "schools",
+        "mobilehome"
+      ],
+      "name": "Department of Public Health & Environment (CDPHE)",
+      "label": "primary",
+      "purpose": "Lead agency on health outcomes related to environmental factors.",
+      "engage": "File a general environmental complaint for specific pollution events."
+    },
+    {
+      "id": "cdle",
+      "level": "State",
+      "topics": [
+        "work"
+      ],
+      "name": "Department of Labor & Employment (CDLE)",
+      "label": "primary",
+      "purpose": "Enforces worker safety laws and wage protections.",
+      "engage": "Submit concerns about workplace safety or wage theft via their website."
+    },
+    {
+      "id": "cde",
+      "level": "State",
+      "topics": [
+        "schools"
+      ],
+      "name": "Department of Education (CDE)",
+      "label": null,
+      "purpose": "Oversees school siting and healthy school environments.",
+      "engage": "Address the State Board of Education at public meetings."
+    },
+    {
+      "id": "bcc",
+      "level": "County",
+      "topics": [
+        "transport",
+        "housing",
+        "general",
+        "oilgas",
+        "mobilehome",
+        "noise"
+      ],
+      "name": "Board of County Commissioners (BCC)",
+      "label": "localFirst",
+      "purpose": "Final decisions on land use, budgets, and county policy that affect EJ.",
+      "engage": "Speak at public hearings."
+    },
+    {
+      "id": "dei",
+      "level": "County",
+      "topics": [
+        "housing",
+        "general"
+      ],
+      "name": "DEI Advisory Board",
+      "label": null,
+      "purpose": "Forum to raise concerns about whether county policies serve all communities.",
+      "engage": "Provide public comment at public meetings."
+    },
+    {
+      "id": "planC",
+      "level": "County",
+      "topics": [
+        "transport",
+        "oilgas",
+        "housing",
+        "noise"
+      ],
+      "name": "Planning Commission",
+      "label": "localFirst",
+      "purpose": "Reviews land-use proposals that shape where industrial and residential uses are sited.",
+      "engage": "Testify at public meetings about specific development projects."
+    },
+    {
+      "id": "phC",
+      "level": "County",
+      "topics": [
+        "air",
+        "water",
+        "general",
+        "schools",
+        "housing",
+        "noise",
+        "mobilehome"
+      ],
+      "name": "Dept. of Health & Environment (LCDHE)",
+      "label": "localFirst",
+      "purpose": "First stop for local environmental health issues (air/water/waste/noise).",
+      "engage": "Contact the Environmental Health division with specific concerns."
+    },
+    {
+      "id": "nr",
+      "level": "County",
+      "topics": [
+        "general"
+      ],
+      "name": "Dept. of Natural Resources",
+      "label": null,
+      "purpose": "Manages open spaces — relevant for equitable access to green space.",
+      "engage": "Provide input on management plans via the website."
+    },
+    {
+      "id": "sd",
+      "level": "County",
+      "topics": [
+        "schools"
+      ],
+      "name": "Poudre & Thompson School Districts",
+      "label": "localFirst",
+      "purpose": "Boards decide on siting, facilities, and resource equity.",
+      "engage": "Speak at your district’s Board of Education meetings."
+    },
+    {
+      "id": "council",
+      "level": "City",
+      "topics": [
+        "utilities",
+        "housing",
+        "transport",
+        "general",
+        "air",
+        "noise",
+        "mobilehome"
+      ],
+      "name": "City Council",
+      "label": "localFirst",
+      "purpose": "City ordinances, zoning, and budgets — main venue for city issues.",
+      "engage": "Provide public comment at City Council meetings."
+    },
+    {
+      "id": "pz",
+      "level": "City",
+      "topics": [
+        "transport",
+        "housing",
+        "oilgas",
+        "noise"
+      ],
+      "name": "Planning & Zoning Commission",
+      "label": "localFirst",
+      "purpose": "Decides how the city develops; affects who bears environmental burdens.",
+      "engage": "Comment on development projects at public meetings."
+    },
+    {
+      "id": "hrc",
+      "level": "City",
+      "topics": [
+        "housing",
+        "general",
+        "mobilehome"
+      ],
+      "name": "Human Rights Commission",
+      "label": null,
+      "purpose": "Addresses civil rights and discrimination dimensions of EJ.",
+      "engage": "Provide public comment or file a complaint via the website."
+    },
+    {
+      "id": "ns",
+      "level": "City",
+      "topics": [
+        "housing",
+        "noise",
+        "mobilehome"
+      ],
+      "name": "Neighborhood Services",
+      "label": "primary",
+      "purpose": "Code enforcement for healthy housing (mold, pests, noise) and landlord–tenant disputes.",
+      "engage": "Report a concern or request mediation through the website."
+    },
+    {
+      "id": "transit",
+      "level": "City",
+      "topics": [
+        "transport",
+        "noise"
+      ],
+      "name": "Transfort & FC Moves",
+      "label": null,
+      "purpose": "Plans for equitable public transit and mitigates transport pollution and noise.",
+      "engage": "Provide feedback on routes and projects via the FC Moves website."
+    },
+    {
+      "id": "env",
+      "level": "City",
+      "topics": [
+        "air",
+        "general",
+        "schools",
+        "water",
+        "noise"
+      ],
+      "name": "Environmental Services",
+      "label": "primary",
+      "purpose": "City department for local air quality, waste, climate programs, and some noise issues.",
+      "engage": "Contact the department with questions or concerns through the website."
+    },
+    {
+      "id": "utils",
+      "level": "City",
+      "topics": [
+        "utilities",
+        "water",
+        "mobilehome"
+      ],
+      "name": "Fort Collins Utilities",
+      "label": "primary",
+      "purpose": "Manages essential services; relevant for service delivery and utility burden.",
+      "engage": "Contact customer service for service issues; address policy at City Council."
+    }
+  ],
+  "priorityOrder": [
+    "City",
+    "County",
+    "State"
+  ]
+}
