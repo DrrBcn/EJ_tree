@@ -3,322 +3,338 @@
     {
       "id": "ejo",
       "level": "State",
-      "topics": [
-        "general",
-        "air",
-        "water",
-        "oilgas",
-        "housing",
-        "schools",
-        "transport",
-        "mobilehome"
-      ],
+      "topics": ["general","air","water","oilgas","housing","schools","transport","mobilehome"],
       "name": "Environmental Justice Ombudsperson",
       "label": "primary",
       "purpose": "The neutral party for EJ complaints against CDPHE.",
-      "engage": "File a formal grievance via the EJ Grievance Process website."
+      "engage": "File a formal grievance via the EJ Grievance Process website.",
+      "phone": "+1-303-692-3000",
+      "email": "cdphe.ej@state.co.us",
+      "website": "https://cdphe.colorado.gov/ejustice",
+      "hours": "Mon-Fri 8am-5pm",
+      "address": "4300 Cherry Creek Drive S, Denver, CO 80246"
     },
     {
       "id": "ejab",
       "level": "State",
-      "topics": [
-        "general"
-      ],
+      "topics": ["general"],
       "name": "EJ Advisory Board",
       "label": null,
       "purpose": "Advises the state on EJ policy.",
-      "engage": "Provide public comment at regular meetings to influence statewide strategy."
+      "engage": "Provide public comment at regular meetings to influence statewide strategy.",
+      "phone": "+1-303-692-3000",
+      "email": "cdphe.ej@state.co.us",
+      "website": "https://cdphe.colorado.gov/ejustice",
+      "hours": "Mon-Fri 8am-5pm",
+      "address": "4300 Cherry Creek Drive S, Denver, CO 80246"
     },
     {
       "id": "aqcc",
       "level": "State",
-      "topics": [
-        "air",
-        "transport",
-        "oilgas",
-        "schools",
-        "general"
-      ],
+      "topics": ["air","transport","oilgas","schools","general"],
       "name": "Air Quality Control Commission (AQCC)",
       "label": null,
       "purpose": "Sets statewide air pollution regulations; relevant to cumulative air impacts.",
-      "engage": "Testify at public rulemaking hearings."
+      "engage": "Testify at public rulemaking hearings.",
+      "phone": "+1-303-692-3100",
+      "email": "air.quality@state.co.us",
+      "website": "https://cdphe.colorado.gov/air-pollution",
+      "hours": "Mon-Fri 8am-5pm",
+      "address": "4300 Cherry Creek Drive S, Denver, CO 80246"
     },
     {
       "id": "wqcc",
       "level": "State",
-      "topics": [
-        "water",
-        "schools",
-        "general",
-        "mobilehome"
-      ],
+      "topics": ["water","schools","general","mobilehome"],
       "name": "Water Quality Control Commission (WQCC)",
       "label": null,
       "purpose": "Sets water quality standards to protect drinking water.",
-      "engage": "Provide comment at public rulemaking hearings."
+      "engage": "Provide comment at public rulemaking hearings.",
+      "phone": "+1-303-692-3500",
+      "email": "water.quality@state.co.us",
+      "website": "https://cdphe.colorado.gov/water-quality",
+      "hours": "Mon-Fri 8am-5pm",
+      "address": "4300 Cherry Creek Drive S, Denver, CO 80246"
     },
     {
       "id": "ecmc",
       "level": "State",
-      "topics": [
-        "oilgas"
-      ],
+      "topics": ["oilgas"],
       "name": "Energy & Carbon Management Commission (ECMC)",
       "label": "primary",
       "purpose": "Regulates oil, gas, and geothermal sites; frequent EJ concerns.",
-      "engage": "File a complaint or comment on permits via the ECMC website."
+      "engage": "File a complaint or comment on permits via the ECMC website.",
+      "phone": "+1-303-894-2000",
+      "email": "dnr.oilgas@state.co.us",
+      "website": "https://dnrweblink.dnr.state.co.us/weblink/",
+      "hours": "Mon-Fri 8am-5pm",
+      "address": "1313 Sherman Street, Denver, CO 80203"
     },
     {
       "id": "puc",
       "level": "State",
-      "topics": [
-        "utilities",
-        "mobilehome"
-      ],
+      "topics": ["utilities","mobilehome"],
       "name": "Public Utilities Commission (PUC)",
       "label": "primary",
       "purpose": "Regulates utilities including energy costs and power plant siting.",
-      "engage": "Comment on utility cases at public hearings."
+      "engage": "Comment on utility cases at public hearings.",
+      "phone": "+1-303-894-2000",
+      "email": "consumer@puc.state.co.us",
+      "website": "https://puc.colorado.gov/",
+      "hours": "Mon-Fri 8am-5pm",
+      "address": "1580 Logan Street, Denver, CO 80203"
     },
     {
       "id": "dola",
       "level": "State",
-      "topics": [
-        "housing",
-        "mobilehome"
-      ],
+      "topics": ["housing","mobilehome"],
       "name": "Division of Housing (DOLA)",
       "label": "primary",
       "purpose": "Addresses fair housing, healthy housing conditions, and mobile home park issues.",
-      "engage": "Access landlord–tenant resources, mobile home park programs, and complaint forms on their website."
+      "engage": "Access landlord–tenant resources, mobile home park programs, and complaint forms on their website.",
+      "phone": "+1-303-864-7720",
+      "email": "dola.housing@state.co.us",
+      "website": "https://dola.colorado.gov/housing",
+      "hours": "Mon-Fri 8am-5pm",
+      "address": "1313 Sherman Street, Denver, CO 80203"
     },
     {
       "id": "cdot",
       "level": "State",
-      "topics": [
-        "transport",
-        "noise"
-      ],
+      "topics": ["transport","noise"],
       "name": "Department of Transportation (CDOT)",
       "label": null,
       "purpose": "Manages highway projects which can create traffic noise and pollution.",
-      "engage": "Comment on project plans through the public involvement portal."
+      "engage": "Comment on project plans through the public involvement portal.",
+      "phone": "+1-303-757-9011",
+      "email": "public.information@dot.state.co.us",
+      "website": "https://www.codot.gov/",
+      "hours": "Mon-Fri 8am-5pm",
+      "address": "2829 West Howard Place, Denver, CO 80204"
     },
     {
       "id": "cdphe",
       "level": "State",
-      "topics": [
-        "air",
-        "water",
-        "general",
-        "schools",
-        "mobilehome"
-      ],
+      "topics": ["air","water","general","schools","mobilehome"],
       "name": "Department of Public Health & Environment (CDPHE)",
       "label": "primary",
       "purpose": "Lead agency on health outcomes related to environmental factors.",
-      "engage": "File a general environmental complaint for specific pollution events."
+      "engage": "File a general environmental complaint for specific pollution events.",
+      "phone": "+1-303-692-2000",
+      "email": "cdphe.webmaster@state.co.us",
+      "website": "https://cdphe.colorado.gov/",
+      "hours": "Mon-Fri 8am-5pm",
+      "address": "4300 Cherry Creek Drive S, Denver, CO 80246"
     },
     {
       "id": "cdle",
       "level": "State",
-      "topics": [
-        "work"
-      ],
+      "topics": ["work"],
       "name": "Department of Labor & Employment (CDLE)",
       "label": "primary",
       "purpose": "Enforces worker safety laws and wage protections.",
-      "engage": "Submit concerns about workplace safety or wage theft via their website."
+      "engage": "Submit concerns about workplace safety or wage theft via their website.",
+      "phone": "+1-303-318-8000",
+      "email": "dole.webmaster@state.co.us",
+      "website": "https://cdle.colorado.gov/",
+      "hours": "Mon-Fri 8am-5pm",
+      "address": "633 17th Street, Denver, CO 80202"
     },
     {
       "id": "cde",
       "level": "State",
-      "topics": [
-        "schools"
-      ],
+      "topics": ["schools"],
       "name": "Department of Education (CDE)",
       "label": null,
       "purpose": "Oversees school siting and healthy school environments.",
-      "engage": "Address the State Board of Education at public meetings."
+      "engage": "Address the State Board of Education at public meetings.",
+      "phone": "+1-303-866-6600",
+      "email": "cde.webmaster@state.co.us",
+      "website": "https://www.cde.state.co.us/",
+      "hours": "Mon-Fri 8am-5pm",
+      "address": "201 East Colfax Avenue, Denver, CO 80203"
     },
     {
       "id": "bcc",
       "level": "County",
-      "topics": [
-        "transport",
-        "housing",
-        "general",
-        "oilgas",
-        "mobilehome",
-        "noise"
-      ],
+      "topics": ["transport","housing","general","oilgas","mobilehome","noise"],
       "name": "Board of County Commissioners (BCC)",
       "label": "localFirst",
       "purpose": "Final decisions on land use, budgets, and county policy that affect EJ.",
-      "engage": "Speak at public hearings."
+      "engage": "Speak at public hearings.",
+      "phone": "+1-970-498-7020",
+      "email": "bocc@larimer.org",
+      "website": "https://www.larimer.org/",
+      "hours": "Mon-Fri 8am-5pm",
+      "address": "200 West Oak Street, Fort Collins, CO 80521"
     },
     {
       "id": "dei",
       "level": "County",
-      "topics": [
-        "housing",
-        "general"
-      ],
+      "topics": ["housing","general"],
       "name": "DEI Advisory Board",
       "label": null,
       "purpose": "Forum to raise concerns about whether county policies serve all communities.",
-      "engage": "Provide public comment at public meetings."
+      "engage": "Provide public comment at public meetings.",
+      "phone": "+1-970-498-7020",
+      "email": "diversity@larimer.org",
+      "website": "https://www.larimer.org/",
+      "hours": "Mon-Fri 8am-5pm",
+      "address": "200 West Oak Street, Fort Collins, CO 80521"
     },
     {
       "id": "planC",
       "level": "County",
-      "topics": [
-        "transport",
-        "oilgas",
-        "housing",
-        "noise"
-      ],
+      "topics": ["transport","oilgas","housing","noise"],
       "name": "Planning Commission",
       "label": "localFirst",
       "purpose": "Reviews land-use proposals that shape where industrial and residential uses are sited.",
-      "engage": "Testify at public meetings about specific development projects."
+      "engage": "Testify at public meetings about specific development projects.",
+      "phone": "+1-970-498-7820",
+      "email": "planning@larimer.org",
+      "website": "https://www.larimer.org/planning",
+      "hours": "Mon-Fri 8am-5pm",
+      "address": "1822 West Oak Street, Fort Collins, CO 80521"
     },
     {
       "id": "phC",
       "level": "County",
-      "topics": [
-        "air",
-        "water",
-        "general",
-        "schools",
-        "housing",
-        "noise",
-        "mobilehome"
-      ],
+      "topics": ["air","water","general","schools","housing","noise","mobilehome"],
       "name": "Dept. of Health & Environment (LCDHE)",
       "label": "localFirst",
       "purpose": "First stop for local environmental health issues (air/water/waste/noise).",
-      "engage": "Contact the Environmental Health division with specific concerns."
+      "engage": "Contact the Environmental Health division with specific concerns.",
+      "phone": "+1-970-498-6700",
+      "email": "healthdept@larimer.org",
+      "website": "https://www.larimer.org/health",
+      "hours": "Mon-Fri 8am-5pm",
+      "address": "1525 Blue Spruce Drive, Fort Collins, CO 80524"
     },
     {
       "id": "nr",
       "level": "County",
-      "topics": [
-        "general"
-      ],
+      "topics": ["general"],
       "name": "Dept. of Natural Resources",
       "label": null,
       "purpose": "Manages open spaces — relevant for equitable access to green space.",
-      "engage": "Provide input on management plans via the website."
+      "engage": "Provide input on management plans via the website.",
+      "phone": "+1-970-679-4570",
+      "email": "parks@larimer.org",
+      "website": "https://www.larimer.org/natural-resources",
+      "hours": "Mon-Fri 8am-5pm",
+      "address": "1423 Oak Street, Fort Collins, CO 80521"
     },
     {
       "id": "sd",
       "level": "County",
-      "topics": [
-        "schools"
-      ],
+      "topics": ["schools"],
       "name": "Poudre & Thompson School Districts",
       "label": "localFirst",
       "purpose": "Boards decide on siting, facilities, and resource equity.",
-      "engage": "Speak at your district’s Board of Education meetings."
+      "engage": "Speak at your district's Board of Education meetings.",
+      "phone": "+1-970-490-3000",
+      "email": "customerservice@psd.org",
+      "website": "https://www.psd.org/",
+      "hours": "Mon-Fri 8am-5pm",
+      "address": "2407 LaPorte Avenue, Fort Collins, CO 80521"
     },
     {
       "id": "council",
       "level": "City",
-      "topics": [
-        "utilities",
-        "housing",
-        "transport",
-        "general",
-        "air",
-        "noise",
-        "mobilehome"
-      ],
+      "topics": ["utilities","housing","transport","general","air","noise","mobilehome"],
       "name": "City Council",
       "label": "localFirst",
       "purpose": "City ordinances, zoning, and budgets — main venue for city issues.",
-      "engage": "Provide public comment at City Council meetings."
+      "engage": "Provide public comment at City Council meetings.",
+      "phone": "+1-970-224-6000",
+      "email": "city.council@fcgov.com",
+      "website": "https://www.fcgov.com/citycouncil/",
+      "hours": "Mon-Fri 8am-5pm",
+      "address": "300 Laporte Avenue, Fort Collins, CO 80521"
     },
     {
       "id": "pz",
       "level": "City",
-      "topics": [
-        "transport",
-        "housing",
-        "oilgas",
-        "noise"
-      ],
+      "topics": ["transport","housing","oilgas","noise"],
       "name": "Planning & Zoning Commission",
       "label": "localFirst",
       "purpose": "Decides how the city develops; affects who bears environmental burdens.",
-      "engage": "Comment on development projects at public meetings."
+      "engage": "Comment on development projects at public meetings.",
+      "phone": "+1-970-224-6200",
+      "email": "planning.info@fcgov.com",
+      "website": "https://www.fcgov.com/planning/",
+      "hours": "Mon-Fri 8am-5pm",
+      "address": "281 North College Avenue, Fort Collins, CO 80521"
     },
     {
       "id": "hrc",
       "level": "City",
-      "topics": [
-        "housing",
-        "general",
-        "mobilehome"
-      ],
+      "topics": ["housing","general","mobilehome"],
       "name": "Human Rights Commission",
       "label": null,
       "purpose": "Addresses civil rights and discrimination dimensions of EJ.",
-      "engage": "Provide public comment or file a complaint via the website."
+      "engage": "Provide public comment or file a complaint via the website.",
+      "phone": "+1-970-224-6144",
+      "email": "humanrights@fcgov.com",
+      "website": "https://www.fcgov.com/humanrights/",
+      "hours": "Mon-Fri 8am-5pm",
+      "address": "300 Laporte Avenue, Fort Collins, CO 80521"
     },
     {
       "id": "ns",
       "level": "City",
-      "topics": [
-        "housing",
-        "noise",
-        "mobilehome"
-      ],
+      "topics": ["housing","noise","mobilehome"],
       "name": "Neighborhood Services",
       "label": "primary",
       "purpose": "Code enforcement for healthy housing (mold, pests, noise) and landlord–tenant disputes.",
-      "engage": "Report a concern or request mediation through the website."
+      "engage": "Report a concern or request mediation through the website.",
+      "phone": "+1-970-224-6100",
+      "email": "neighborhoodservices@fcgov.com",
+      "website": "https://www.fcgov.com/neighborhoodservices/",
+      "hours": "Mon-Fri 8am-5pm",
+      "address": "281 North College Avenue, Fort Collins, CO 80521"
     },
     {
       "id": "transit",
       "level": "City",
-      "topics": [
-        "transport",
-        "noise"
-      ],
+      "topics": ["transport","noise"],
       "name": "Transfort & FC Moves",
       "label": null,
       "purpose": "Plans for equitable public transit and mitigates transport pollution and noise.",
-      "engage": "Provide feedback on routes and projects via the FC Moves website."
+      "engage": "Provide feedback on routes and projects via the FC Moves website.",
+      "phone": "+1-970-221-6620",
+      "email": "info@fcgov.com",
+      "website": "https://www.fcgov.com/transfort/",
+      "hours": "Mon-Fri 8am-5pm",
+      "address": "631 Linden Street, Fort Collins, CO 80524"
     },
     {
       "id": "env",
       "level": "City",
-      "topics": [
-        "air",
-        "general",
-        "schools",
-        "water",
-        "noise"
-      ],
+      "topics": ["air","general","schools","water","noise"],
       "name": "Environmental Services",
       "label": "primary",
       "purpose": "City department for local air quality, waste, climate programs, and some noise issues.",
-      "engage": "Contact the department with questions or concerns through the website."
+      "engage": "Contact the department with questions or concerns through the website.",
+      "phone": "+1-970-224-6142",
+      "email": "environmental@fcgov.com",
+      "website": "https://www.fcgov.com/environmental/",
+      "hours": "Mon-Fri 8am-5pm",
+      "address": "281 North College Avenue, Fort Collins, CO 80521"
     },
     {
       "id": "utils",
       "level": "City",
-      "topics": [
-        "utilities",
-        "water",
-        "mobilehome"
-      ],
+      "topics": ["utilities","water","mobilehome"],
       "name": "Fort Collins Utilities",
       "label": "primary",
       "purpose": "Manages essential services; relevant for service delivery and utility burden.",
-      "engage": "Contact customer service for service issues; address policy at City Council."
+      "engage": "Contact customer service for service issues; address policy at City Council.",
+      "phone": "+1-970-221-6700",
+      "email": "utilities@fcgov.com",
+      "website": "https://www.fcgov.com/utilities/",
+      "hours": "Mon-Fri 8am-5pm",
+      "address": "631 Linden Street, Fort Collins, CO 80524"
     }
   ],
   "priorityOrder": [

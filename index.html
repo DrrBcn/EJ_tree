@@ -62,6 +62,7 @@
       font-size: clamp(1rem, 0.95rem + 0.8vw, 1.2rem); color: var(--fg); cursor:pointer; box-shadow: var(--shadow); }
     .btn:active{ transform: translateY(1px); }
     .btn:focus-visible{ outline: 3px solid var(--focus); outline-offset: 3px; }
+    .btn[data-selected="true"]{ border-color: var(--focus); background: linear-gradient(180deg, rgba(255,238,88,.3), rgba(255,238,88,.1)); box-shadow: var(--shadow), 0 0 0 3px rgba(255,238,88,.2); }
     .pri{ border-color: var(--accent3); background: linear-gradient(180deg, rgba(168,230,191,.25), rgba(168,230,191,.08)); }
     .rec{ display:flex; flex-direction:column; gap:8px; }
     .label{ align-self:flex-start; font-weight:900; font-size:.82rem; letter-spacing:.02em; padding:6px 10px;
@@ -79,21 +80,100 @@
     .hint{ font-size:.95rem; color: var(--muted); margin-top: 10px; }
     .lang-grid{ display:grid; gap:12px; grid-template-columns: 1fr; }
     .lang-choice{ text-align:center; }
+    .contact-info{ font-size:0.95rem; margin-top:12px; display:grid; gap:8px; }
+    .contact-item{ display:flex; align-items:flex-start; gap:8px; }
+    .contact-icon{ width:20px; height:20px; display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0; }
+    .contact-label{ font-weight:700; min-width:70px; }
+    .contact-value{ flex:1; }
+    .contact-link{ color:var(--accent3); text-decoration:none; word-break:break-all; }
+    .contact-link:hover{ text-decoration:underline; }
+    @media (max-width:420px){ .contact-item{ font-size:0.9rem; } .contact-label{ min-width:60px; } }
+    .search-box{ width:100%; padding:14px 16px; background: rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); border-radius:var(--radius); color:var(--fg); font-size:1rem; }
+    .search-box::placeholder{ color:var(--muted); opacity:.6; }
+    .search-box:focus{ outline:3px solid var(--focus); outline-offset:2px; }
+    .filter-group{ margin-top:12px; display:grid; gap:8px; }
+    .filter-label{ font-size:0.9rem; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.02em; }
+    .filter-toggles{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; }
+    .filter-btn{ padding:10px 12px; background:rgba(255,255,255,.08); border:2px solid rgba(255,255,255,.18); border-radius:12px; color:var(--fg); font-weight:700; cursor:pointer; font-size:0.9rem; }
+    .filter-btn[data-active="true"]{ border-color:var(--focus); background:rgba(255,238,88,.15); }
+    .filter-btn:focus-visible{ outline:3px solid var(--focus); outline-offset:2px; }
+    .search-results{ margin-top:12px; font-size:0.9rem; color:var(--muted); }
+    .progress-container{ width:100%; height:4px; background:rgba(255,255,255,.1); border-radius:999px; overflow:hidden; margin-bottom:8px; }
+    .progress-bar{ height:100%; background:var(--accent3); transition:width .3s ease; }
+    .progress-text{ font-size:0.8rem; color:var(--muted); text-align:center; margin-top:4px; }
+    .bookmark-btn{ background:none; border:none; font-size:1.5rem; cursor:pointer; padding:6px 12px; color:var(--accent3); display:inline-flex; align-items:center; justify-content:center; }
+    .bookmark-btn:hover{ opacity:.8; }
+    .bookmark-btn:focus-visible{ outline:3px solid var(--focus); outline-offset:2px; }
+    .rec-header{ display:flex; align-items:flex-start; justify-content:space-between; gap:8px; margin-bottom:8px; }
+    .rec-title{ flex:1; }
+    .no-bookmarks{ text-align:center; color:var(--muted); padding:24px 12px; }
+    [data-contrast="high"] {
+      --bg: #000000;
+      --fg: #FFFFFF;
+      --muted: #FFFFFF;
+      --accent1: #FFFF00;
+      --accent2: #FFFF00;
+      --accent3: #00FFFF;
+      --focus: #FFFF00;
+    }
+    [data-contrast="high"] body{
+      background: #000000;
+    }
+    [data-contrast="high"] .search-box,
+    [data-contrast="high"] .filter-btn,
+    [data-contrast="high"] .btn{
+      border-color: #FFFFFF;
+      color: #FFFFFF;
+      background: #000000;
+    }
+    [data-contrast="high"] .btn[data-selected="true"]{
+      border-color: #FFFF00;
+      background: #FFFF00;
+      color: #000000;
+    }
+    [data-contrast="high"] .filter-btn[data-active="true"]{
+      border-color: #FFFF00;
+      background: #FFFF00;
+      color: #000000;
+    }
+    .contrast-btn{ position:relative; font-size:1.2rem; cursor:pointer; }
+    @media print {
+      body{ background:#fff; color:#000; }
+      header, footer, .small-btn, .lang-switch, .progress-container{ display:none !important; }
+      .app{ padding:0; gap:0; min-height:auto; }
+      .screen.active{ position:static; opacity:1; transform:none; }
+      .card{ border:1px solid #ccc; background:#fff; box-shadow:none; page-break-inside:avoid; }
+      .rec{ border:1px solid #000; background:#fff; color:#000; page-break-inside:avoid; }
+      .contact-link{ color:#0066cc; }
+      .bookmark-btn{ display:none; }
+      a{ color:#0066cc; text-decoration:underline; }
+    }
   </style>
 </head>
 <body>
   <div class="app" role="application" aria-label="Environmental Justice Decision Helper">
     <header>
-      <div class="brand" aria-hidden="true">
-        <div class="logo" role="img" aria-label="Leaf logo"></div>
-        <div>
-          <div class="kicker">Environmental Justice</div>
-          <h1 id="appTitle">Decision Tree</h1>
+      <div style="width:100%;">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
+          <div class="brand" aria-hidden="true">
+            <div class="logo" role="img" aria-label="Leaf logo"></div>
+            <div>
+              <div class="kicker">Environmental Justice</div>
+              <h1 id="appTitle">Decision Tree</h1>
+            </div>
+          </div>
+          <div class="lang-switch" role="group" aria-label="Language and search (header)">
+            <button class="lang-btn" id="searchBtn" style="display:none;" title="Search agencies">🔍</button>
+            <button class="lang-btn" id="bookmarkHeaderBtn" style="display:none;" title="View bookmarks">🔖</button>
+            <button class="lang-btn" id="contrastBtn" title="Toggle high contrast mode">◐</button>
+            <button class="lang-btn" id="enBtn" aria-pressed="true">English</button>
+            <button class="lang-btn" id="esBtn" aria-pressed="false">Español</button>
+          </div>
         </div>
-      </div>
-      <div class="lang-switch" role="group" aria-label="Language (header switch)">
-        <button class="lang-btn" id="enBtn" aria-pressed="true">English</button>
-        <button class="lang-btn" id="esBtn" aria-pressed="false">Español</button>
+        <div class="progress-container" id="progressContainer" style="display:none;">
+          <div class="progress-bar" id="progressBar" style="width:0%;"></div>
+        </div>
+        <div class="progress-text" id="progressText" style="display:none;"></div>
       </div>
     </header>
 
@@ -125,7 +205,25 @@
         </div>
       </section>
 
-      <!-- Screen 2: Problem Selection -->
+      <!-- Screen 2: Search/Filter Agencies -->
+      <section class="screen" id="search" aria-labelledby="searchHead">
+        <div class="card">
+          <div class="big" id="searchHead">Search Agencies</div>
+          <input type="text" class="search-box" id="searchInput" placeholder="Search by name, topic, or service..." />
+          <div class="filter-group">
+            <div class="filter-label" id="filterLabel">Filter by Level</div>
+            <div class="filter-toggles">
+              <button class="filter-btn" id="filterCity" data-active="true" data-level="City">City</button>
+              <button class="filter-btn" id="filterCounty" data-active="true" data-level="County">County</button>
+              <button class="filter-btn" id="filterState" data-active="true" data-level="State">State</button>
+            </div>
+          </div>
+          <div class="search-results" id="searchResults"></div>
+        </div>
+        <div id="searchResultsList" style="display:grid; gap:12px; margin-top:12px;"></div>
+      </section>
+
+      <!-- Screen 3: Problem Selection -->
       <section class="screen" id="problems" aria-labelledby="probHead">
         <div class="card">
           <div class="big" id="probHead">What do you need help with?</div>
@@ -136,13 +234,26 @@
         </div>
       </section>
 
-      <!-- Screen 3: Recommendations -->
+      <!-- Screen 4: Recommendations -->
       <section class="screen" id="results" aria-labelledby="resHead">
         <div class="card">
           <div class="big" id="resHead">Who to contact</div>
           <p class="muted" id="resCopy">Start with the first agency below, then contact the others in order. If urgent, you can contact all of them.</p>
+          <div style="display:flex; gap:8px; margin-top:12px;">
+            <button id="shareBtn" class="small-btn" style="flex:1;" title="Share these results">📤 Share</button>
+            <button id="printBtn" class="small-btn" style="flex:1;" title="Print these results">🖨️ Print</button>
+          </div>
         </div>
         <div id="recList" style="display:grid; gap:12px; margin-top:12px;"></div>
+      </section>
+
+      <!-- Screen 5: Saved Bookmarks -->
+      <section class="screen" id="bookmarks" aria-labelledby="bookmarkHead">
+        <div class="card">
+          <div class="big" id="bookmarkHead">Saved Agencies</div>
+          <p class="muted" id="bookmarkCopy">Agencies you've bookmarked for quick reference.</p>
+        </div>
+        <div id="bookmarkList" style="display:grid; gap:12px; margin-top:12px;"></div>
       </section>
     </main>
 
@@ -187,6 +298,11 @@
           localFirst: 'LOCAL FIRST',
           next: 'NEXT'
         },
+        bookmarkHead: 'Saved Agencies',
+        bookmarkCopy: 'Agencies you\'ve bookmarked for quick reference.',
+        bookmarkAdd: 'Bookmark',
+        bookmarkRemove: 'Remove',
+        noBookmarks: 'No saved agencies yet. Bookmark agencies from search or results.',
         problems: [
           {id:'air', label:'Bad smells or air pollution from factories/highways'},
           {id:'noise', label:'Excessive noise (traffic, construction, equipment)'},
@@ -224,6 +340,11 @@
           localFirst: 'PRIMERO LOCAL',
           next: 'SIGUIENTE'
         },
+        bookmarkHead: 'Agencias Guardadas',
+        bookmarkCopy: 'Agencias que has guardado para referencia rápida.',
+        bookmarkAdd: 'Guardar',
+        bookmarkRemove: 'Eliminar',
+        noBookmarks: 'Sin agencias guardadas aún. Guarda agencias desde búsqueda o resultados.',
         problems: [
           {id:'air', label:'Malos olores o contaminación del aire de fábricas/autopistas'},
           {id:'noise', label:'Ruido excesivo (tráfico, obras, maquinaria)'},
@@ -260,7 +381,120 @@
     // --- UI state ---
     let lang = 'en';
     let selectedProblem = null;
+    let selectedProblemId = null;
+    let searchFilters = { City: true, County: true, State: true };
+    let searchTerm = '';
     const qs = sel => document.querySelector(sel);
+
+    // --- High Contrast Mode ---
+    function getContrast(){
+      try{ return localStorage.getItem('ej_contrast') === 'high' ? 'high' : 'normal'; }
+      catch(e){ return 'normal'; }
+    }
+    function setContrast(mode){
+      try{ localStorage.setItem('ej_contrast', mode); }
+      catch(e){}
+      if(mode === 'high') document.documentElement.setAttribute('data-contrast', 'high');
+      else document.documentElement.removeAttribute('data-contrast');
+      qs('#contrastBtn').setAttribute('aria-pressed', mode === 'high');
+    }
+    function toggleContrast(){
+      const current = getContrast();
+      setContrast(current === 'high' ? 'normal' : 'high');
+    }
+
+    // --- Share & Print Functions ---
+    function generateResultsText(){
+      if(!selectedProblem) return '';
+      let text = `Environmental Justice Decision Tree Results\n`;
+      text += `Topic: ${selectedProblem.label}\n\n`;
+      text += `Recommended Agencies:\n`;
+      const candidates = AGENCIES.filter(a=> Array.isArray(a.topics) && a.topics.includes(selectedProblem.id));
+      candidates.sort((a,b)=> PRIORITY_ORDER.indexOf(a.level) - PRIORITY_ORDER.indexOf(b.level));
+      candidates.slice(0, 6).forEach((a, i)=>{
+        text += `\n${i+1}. ${a.name} (${a.level})\n`;
+        text += `Purpose: ${a.purpose}\n`;
+        if(a.phone) text += `Phone: ${a.phone}\n`;
+        if(a.email) text += `Email: ${a.email}\n`;
+        if(a.website) text += `Website: ${a.website}\n`;
+        if(a.hours) text += `Hours: ${a.hours}\n`;
+        if(a.address) text += `Address: ${a.address}\n`;
+        text += `How to Engage: ${a.engage}\n`;
+      });
+      return text;
+    }
+    function shareResults(){
+      const text = generateResultsText();
+      if(!text) return;
+      if(navigator.share){
+        navigator.share({title:'EJ Decision Tree Results', text:text});
+      } else {
+        const encoded = encodeURIComponent(text);
+        const subject = encodeURIComponent('Environmental Justice Agency Recommendations');
+        window.open(`mailto:?subject=${subject}&body=${encoded}`);
+      }
+    }
+    function printResults(){
+      window.print();
+    }
+
+    // --- Bookmark management ---
+    function getBookmarks(){
+      try{ return JSON.parse(localStorage.getItem('ej_bookmarks')) || []; }
+      catch(e){ return []; }
+    }
+    function saveBookmark(agencyId){
+      const bookmarks = getBookmarks();
+      if(!bookmarks.find(b=>b.agencyId===agencyId)){
+        bookmarks.push({id:'bm_'+Date.now()+'_'+Math.random(), agencyId, savedAt: Date.now()});
+        localStorage.setItem('ej_bookmarks', JSON.stringify(bookmarks));
+      }
+    }
+    function removeBookmark(agencyId){
+      const bookmarks = getBookmarks().filter(b=>b.agencyId!==agencyId);
+      localStorage.setItem('ej_bookmarks', JSON.stringify(bookmarks));
+    }
+    function isBookmarked(agencyId){
+      return getBookmarks().some(b=>b.agencyId===agencyId);
+    }
+    function renderBookmarks(){
+      const bookmarks = getBookmarks();
+      const box = qs('#bookmarkList');
+      box.innerHTML = '';
+      if(bookmarks.length === 0){
+        box.innerHTML = '<div class="no-bookmarks">' + TXT[lang].noBookmarks + '</div>';
+        return;
+      }
+      bookmarks.forEach(bm=>{
+        const agency = AGENCIES.find(a=>a.id===bm.agencyId);
+        if(!agency) return;
+        const item = document.createElement('div');
+        item.className = 'card rec';
+        const title = document.createElement('div');
+        title.className = 'agency';
+        title.textContent = `${agency.name} — ${agency.level}`;
+        const purpose = document.createElement('div');
+        purpose.className = 'purpose';
+        purpose.innerHTML = `<strong>${lang==='en'?'About':'Acerca de'}:</strong> ${agency.purpose}`;
+        const removeBtn = document.createElement('button');
+        removeBtn.className = 'bookmark-btn';
+        removeBtn.innerHTML = '✕';
+        removeBtn.title = TXT[lang].bookmarkRemove;
+        removeBtn.addEventListener('click', ()=>{
+          removeBookmark(agency.id);
+          renderBookmarks();
+        });
+        item.append(title,purpose);
+        const contactInfo = renderContactInfo(agency);
+        item.appendChild(contactInfo);
+        item.style.position = 'relative';
+        removeBtn.style.position = 'absolute';
+        removeBtn.style.top = '12px';
+        removeBtn.style.right = '12px';
+        item.appendChild(removeBtn);
+        box.appendChild(item);
+      });
+    }
 
     function setLang(next){
       lang = next;
@@ -287,9 +521,44 @@
       buildProblems();
     }
 
+    function updateProgress(){
+      const screens = ['lang', 'welcome', 'search', 'problems', 'results'];
+      const currentScreenIndex = screens.indexOf(historyStack.at(-1));
+      const progressPercent = ((currentScreenIndex + 1) / screens.length) * 100;
+      qs('#progressBar').style.width = progressPercent + '%';
+      const step = currentScreenIndex + 1;
+      qs('#progressText').textContent = `Step ${step} of ${screens.length}`;
+    }
+
     function show(id){
       document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
       qs('#'+id).classList.add('active');
+      const searchBtn = qs('#searchBtn');
+      const bookmarkBtn = qs('#bookmarkHeaderBtn');
+      if(id === 'lang' || id === 'welcome' || id === 'bookmarks') {
+        searchBtn.style.display = 'none';
+        bookmarkBtn.style.display = 'none';
+        qs('#progressContainer').style.display = 'none';
+        qs('#progressText').style.display = 'none';
+      }
+      else {
+        searchBtn.style.display = 'block';
+        bookmarkBtn.style.display = 'block';
+        qs('#progressContainer').style.display = 'block';
+        qs('#progressText').style.display = 'block';
+      }
+      // Restore search state if returning to search screen
+      if(id === 'search'){
+        qs('#searchInput').value = searchTerm;
+        if(searchTerm) performSearch();
+      }
+      // Render bookmarks if opening bookmarks screen
+      if(id === 'bookmarks'){
+        qs('#bookmarkHead').textContent = TXT[lang].bookmarkHead;
+        qs('#bookmarkCopy').textContent = TXT[lang].bookmarkCopy;
+        renderBookmarks();
+      }
+      updateProgress();
     }
 
     function buildProblems(){
@@ -301,12 +570,14 @@
         b.className = 'btn';
         b.textContent = p.label;
         b.setAttribute('data-problem', p.id);
+        if(selectedProblemId === p.id) b.setAttribute('data-selected', 'true');
         b.addEventListener('click', ()=> selectProblem(p.id, p.label));
         grid.appendChild(b);
       });
     }
 
     function selectProblem(problemId, problemLabel){
+      selectedProblemId = problemId;
       selectedProblem = { id: problemId, label: problemLabel };
       const candidates = AGENCIES.filter(a=> Array.isArray(a.topics) && a.topics.includes(problemId));
       candidates.sort((a,b)=> PRIORITY_ORDER.indexOf(a.level) - PRIORITY_ORDER.indexOf(b.level));
@@ -325,6 +596,42 @@
       return parts.join(' • ');
     }
 
+    function renderContactInfo(a){
+      const contactDiv = document.createElement('div');
+      contactDiv.className = 'contact-info';
+      if(a.phone){
+        const item = document.createElement('div');
+        item.className = 'contact-item';
+        item.innerHTML = `<div class="contact-icon">📞</div><div class="contact-value"><strong>Phone:</strong> <a href="tel:${a.phone.replace(/[^\d+]/g,'')}" class="contact-link">${a.phone}</a></div>`;
+        contactDiv.appendChild(item);
+      }
+      if(a.email){
+        const item = document.createElement('div');
+        item.className = 'contact-item';
+        item.innerHTML = `<div class="contact-icon">✉️</div><div class="contact-value"><strong>Email:</strong> <a href="mailto:${a.email}" class="contact-link">${a.email}</a></div>`;
+        contactDiv.appendChild(item);
+      }
+      if(a.website){
+        const item = document.createElement('div');
+        item.className = 'contact-item';
+        item.innerHTML = `<div class="contact-icon">🔗</div><div class="contact-value"><strong>Website:</strong> <a href="${a.website}" target="_blank" rel="noopener noreferrer" class="contact-link">${a.website}</a></div>`;
+        contactDiv.appendChild(item);
+      }
+      if(a.hours){
+        const item = document.createElement('div');
+        item.className = 'contact-item';
+        item.innerHTML = `<div class="contact-icon">🕐</div><div class="contact-value"><strong>Hours:</strong> ${a.hours}</div>`;
+        contactDiv.appendChild(item);
+      }
+      if(a.address){
+        const item = document.createElement('div');
+        item.className = 'contact-item';
+        item.innerHTML = `<div class="contact-icon">📍</div><div class="contact-value"><strong>Address:</strong> ${a.address}</div>`;
+        contactDiv.appendChild(item);
+      }
+      return contactDiv;
+    }
+
     function renderRecs(list){
       const box = qs('#recList');
       box.innerHTML = '';
@@ -332,6 +639,7 @@
       list.forEach((a, i)=>{
         const item = document.createElement('div');
         item.className = 'card rec';
+        item.style.position = 'relative';
         const tag = document.createElement('div');
         tag.className = 'label';
         tag.textContent = labelBadge(a, i);
@@ -345,19 +653,106 @@
         engage.className = 'engage';
         engage.innerHTML = `<strong>${lang==='en'?'How to engage':'Cómo participar'}:</strong> ${a.engage}`;
         item.append(tag,title,purpose,engage);
+        const contactInfo = renderContactInfo(a);
+        item.appendChild(contactInfo);
+        const bookmarkBtn = document.createElement('button');
+        bookmarkBtn.className = 'bookmark-btn';
+        bookmarkBtn.innerHTML = isBookmarked(a.id) ? '★' : '☆';
+        bookmarkBtn.title = TXT[lang].bookmarkAdd;
+        bookmarkBtn.addEventListener('click', ()=>{
+          if(isBookmarked(a.id)) removeBookmark(a.id);
+          else saveBookmark(a.id);
+          bookmarkBtn.innerHTML = isBookmarked(a.id) ? '★' : '☆';
+        });
+        bookmarkBtn.style.position = 'absolute';
+        bookmarkBtn.style.top = '12px';
+        bookmarkBtn.style.right = '12px';
+        item.appendChild(bookmarkBtn);
         box.appendChild(item);
       });
+    }
+
+    function performSearch(){
+      const term = searchTerm.toLowerCase();
+      let results = AGENCIES.filter(a => {
+        const matchesLevel = searchFilters[a.level];
+        if(!matchesLevel) return false;
+        if(!term) return true;
+        const searchFields = `${a.name} ${a.purpose} ${a.engage} ${(a.topics||[]).join(' ')}`.toLowerCase();
+        return searchFields.includes(term);
+      });
+      renderSearchResults(results);
+    }
+
+    function renderSearchResults(list){
+      const box = qs('#searchResultsList');
+      const counter = qs('#searchResults');
+      box.innerHTML = '';
+      counter.textContent = `${list.length} ${list.length === 1 ? 'agency' : 'agencies'} found`;
+      if(list.length === 0){
+        counter.textContent = 'No agencies found. Try adjusting your search or filters.';
+        return;
+      }
+      list.forEach((a, i)=>{
+        const item = document.createElement('div');
+        item.className = 'card rec';
+        item.style.position = 'relative';
+        const title = document.createElement('div');
+        title.className = 'agency';
+        title.textContent = `${a.name} — ${a.level}`;
+        const purpose = document.createElement('div');
+        purpose.className = 'purpose';
+        purpose.innerHTML = `<strong>${lang==='en'?'About':'Acerca de'}:</strong> ${a.purpose}`;
+        item.append(title, purpose);
+        const contactInfo = renderContactInfo(a);
+        item.appendChild(contactInfo);
+        const bookmarkBtn = document.createElement('button');
+        bookmarkBtn.className = 'bookmark-btn';
+        bookmarkBtn.innerHTML = isBookmarked(a.id) ? '★' : '☆';
+        bookmarkBtn.title = TXT[lang].bookmarkAdd;
+        bookmarkBtn.addEventListener('click', ()=>{
+          if(isBookmarked(a.id)) removeBookmark(a.id);
+          else saveBookmark(a.id);
+          bookmarkBtn.innerHTML = isBookmarked(a.id) ? '★' : '☆';
+        });
+        bookmarkBtn.style.position = 'absolute';
+        bookmarkBtn.style.top = '12px';
+        bookmarkBtn.style.right = '12px';
+        item.appendChild(bookmarkBtn);
+        box.appendChild(item);
+      });
+    }
+
+    let searchTimeout;
+    function handleSearchInput(e){
+      clearTimeout(searchTimeout);
+      searchTerm = e.target.value;
+      searchTimeout = setTimeout(performSearch, 300);
+    }
+
+    function toggleSearchFilter(level){
+      searchFilters[level] = !searchFilters[level];
+      qs(`#filter${level}`).setAttribute('data-active', searchFilters[level]);
+      performSearch();
     }
 
     // Nav controls
     const historyStack = ['lang'];
     function goto(next){ historyStack.push(next); show(next); }
     function back(){ if(historyStack.length>1){ historyStack.pop(); show(historyStack.at(-1)); } }
-    function restart(){ historyStack.splice(0, historyStack.length, 'lang'); show('lang'); }
+    function restart(){ historyStack.splice(0, historyStack.length, 'lang'); selectedProblemId = null; show('lang'); }
 
     // Events
     qs('#enBtn').addEventListener('click', ()=> setLang('en'));
     qs('#esBtn').addEventListener('click', ()=> setLang('es'));
+    qs('#searchBtn').addEventListener('click', ()=> goto('search'));
+    qs('#bookmarkHeaderBtn').addEventListener('click', ()=> goto('bookmarks'));
+    qs('#shareBtn').addEventListener('click', shareResults);
+    qs('#printBtn').addEventListener('click', printResults);
+    qs('#searchInput').addEventListener('input', handleSearchInput);
+    qs('#filterCity').addEventListener('click', ()=> toggleSearchFilter('City'));
+    qs('#filterCounty').addEventListener('click', ()=> toggleSearchFilter('County'));
+    qs('#filterState').addEventListener('click', ()=> toggleSearchFilter('State'));
     qs('#chooseEN').addEventListener('click', ()=> { setLang('en'); goto('problems'); });
     qs('#chooseES').addEventListener('click', ()=> { setLang('es'); goto('problems'); });
     qs('#startBtn').addEventListener('click', ()=> { goto('problems'); });
@@ -367,7 +762,11 @@
     // touch responsiveness
     document.addEventListener('touchstart', ()=>{}, {passive:true});
 
+    // Events for contrast button
+    qs('#contrastBtn').addEventListener('click', toggleContrast);
+
     // Init
+    setContrast(getContrast());
     setLang('en');
     loadData();
   </script>
