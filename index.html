@@ -101,6 +101,12 @@
     .progress-container{ width:100%; height:4px; background:rgba(255,255,255,.1); border-radius:999px; overflow:hidden; margin-bottom:8px; }
     .progress-bar{ height:100%; background:var(--accent3); transition:width .3s ease; }
     .progress-text{ font-size:0.8rem; color:var(--muted); text-align:center; margin-top:4px; }
+    .bookmark-btn{ background:none; border:none; font-size:1.5rem; cursor:pointer; padding:6px 12px; color:var(--accent3); display:inline-flex; align-items:center; justify-content:center; }
+    .bookmark-btn:hover{ opacity:.8; }
+    .bookmark-btn:focus-visible{ outline:3px solid var(--focus); outline-offset:2px; }
+    .rec-header{ display:flex; align-items:flex-start; justify-content:space-between; gap:8px; margin-bottom:8px; }
+    .rec-title{ flex:1; }
+    .no-bookmarks{ text-align:center; color:var(--muted); padding:24px 12px; }
   </style>
 </head>
 <body>
@@ -117,6 +123,7 @@
           </div>
           <div class="lang-switch" role="group" aria-label="Language and search (header)">
             <button class="lang-btn" id="searchBtn" style="display:none;" title="Search agencies">🔍</button>
+            <button class="lang-btn" id="bookmarkHeaderBtn" style="display:none;" title="View bookmarks">🔖</button>
             <button class="lang-btn" id="enBtn" aria-pressed="true">English</button>
             <button class="lang-btn" id="esBtn" aria-pressed="false">Español</button>
           </div>
@@ -185,13 +192,22 @@
         </div>
       </section>
 
-      <!-- Screen 3: Recommendations -->
+      <!-- Screen 4: Recommendations -->
       <section class="screen" id="results" aria-labelledby="resHead">
         <div class="card">
           <div class="big" id="resHead">Who to contact</div>
           <p class="muted" id="resCopy">Start with the first agency below, then contact the others in order. If urgent, you can contact all of them.</p>
         </div>
         <div id="recList" style="display:grid; gap:12px; margin-top:12px;"></div>
+      </section>
+
+      <!-- Screen 5: Saved Bookmarks -->
+      <section class="screen" id="bookmarks" aria-labelledby="bookmarkHead">
+        <div class="card">
+          <div class="big" id="bookmarkHead">Saved Agencies</div>
+          <p class="muted" id="bookmarkCopy">Agencies you've bookmarked for quick reference.</p>
+        </div>
+        <div id="bookmarkList" style="display:grid; gap:12px; margin-top:12px;"></div>
       </section>
     </main>
 
@@ -236,6 +252,11 @@
           localFirst: 'LOCAL FIRST',
           next: 'NEXT'
         },
+        bookmarkHead: 'Saved Agencies',
+        bookmarkCopy: 'Agencies you\'ve bookmarked for quick reference.',
+        bookmarkAdd: 'Bookmark',
+        bookmarkRemove: 'Remove',
+        noBookmarks: 'No saved agencies yet. Bookmark agencies from search or results.',
         problems: [
           {id:'air', label:'Bad smells or air pollution from factories/highways'},
           {id:'noise', label:'Excessive noise (traffic, construction, equipment)'},
@@ -273,6 +294,11 @@
           localFirst: 'PRIMERO LOCAL',
           next: 'SIGUIENTE'
         },
+        bookmarkHead: 'Agencias Guardadas',
+        bookmarkCopy: 'Agencias que has guardado para referencia rápida.',
+        bookmarkAdd: 'Guardar',
+        bookmarkRemove: 'Eliminar',
+        noBookmarks: 'Sin agencias guardadas aún. Guarda agencias desde búsqueda o resultados.',
         problems: [
           {id:'air', label:'Malos olores o contaminación del aire de fábricas/autopistas'},
           {id:'noise', label:'Ruido excesivo (tráfico, obras, maquinaria)'},
@@ -314,6 +340,64 @@
     let searchTerm = '';
     const qs = sel => document.querySelector(sel);
 
+    // --- Bookmark management ---
+    function getBookmarks(){
+      try{ return JSON.parse(localStorage.getItem('ej_bookmarks')) || []; }
+      catch(e){ return []; }
+    }
+    function saveBookmark(agencyId){
+      const bookmarks = getBookmarks();
+      if(!bookmarks.find(b=>b.agencyId===agencyId)){
+        bookmarks.push({id:'bm_'+Date.now()+'_'+Math.random(), agencyId, savedAt: Date.now()});
+        localStorage.setItem('ej_bookmarks', JSON.stringify(bookmarks));
+      }
+    }
+    function removeBookmark(agencyId){
+      const bookmarks = getBookmarks().filter(b=>b.agencyId!==agencyId);
+      localStorage.setItem('ej_bookmarks', JSON.stringify(bookmarks));
+    }
+    function isBookmarked(agencyId){
+      return getBookmarks().some(b=>b.agencyId===agencyId);
+    }
+    function renderBookmarks(){
+      const bookmarks = getBookmarks();
+      const box = qs('#bookmarkList');
+      box.innerHTML = '';
+      if(bookmarks.length === 0){
+        box.innerHTML = '<div class="no-bookmarks">' + TXT[lang].noBookmarks + '</div>';
+        return;
+      }
+      bookmarks.forEach(bm=>{
+        const agency = AGENCIES.find(a=>a.id===bm.agencyId);
+        if(!agency) return;
+        const item = document.createElement('div');
+        item.className = 'card rec';
+        const title = document.createElement('div');
+        title.className = 'agency';
+        title.textContent = `${agency.name} — ${agency.level}`;
+        const purpose = document.createElement('div');
+        purpose.className = 'purpose';
+        purpose.innerHTML = `<strong>${lang==='en'?'About':'Acerca de'}:</strong> ${agency.purpose}`;
+        const removeBtn = document.createElement('button');
+        removeBtn.className = 'bookmark-btn';
+        removeBtn.innerHTML = '✕';
+        removeBtn.title = TXT[lang].bookmarkRemove;
+        removeBtn.addEventListener('click', ()=>{
+          removeBookmark(agency.id);
+          renderBookmarks();
+        });
+        item.append(title,purpose);
+        const contactInfo = renderContactInfo(agency);
+        item.appendChild(contactInfo);
+        item.style.position = 'relative';
+        removeBtn.style.position = 'absolute';
+        removeBtn.style.top = '12px';
+        removeBtn.style.right = '12px';
+        item.appendChild(removeBtn);
+        box.appendChild(item);
+      });
+    }
+
     function setLang(next){
       lang = next;
       // toggle header buttons
@@ -352,13 +436,16 @@
       document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
       qs('#'+id).classList.add('active');
       const searchBtn = qs('#searchBtn');
-      if(id === 'lang' || id === 'welcome') {
+      const bookmarkBtn = qs('#bookmarkHeaderBtn');
+      if(id === 'lang' || id === 'welcome' || id === 'bookmarks') {
         searchBtn.style.display = 'none';
+        bookmarkBtn.style.display = 'none';
         qs('#progressContainer').style.display = 'none';
         qs('#progressText').style.display = 'none';
       }
       else {
         searchBtn.style.display = 'block';
+        bookmarkBtn.style.display = 'block';
         qs('#progressContainer').style.display = 'block';
         qs('#progressText').style.display = 'block';
       }
@@ -366,6 +453,12 @@
       if(id === 'search'){
         qs('#searchInput').value = searchTerm;
         if(searchTerm) performSearch();
+      }
+      // Render bookmarks if opening bookmarks screen
+      if(id === 'bookmarks'){
+        qs('#bookmarkHead').textContent = TXT[lang].bookmarkHead;
+        qs('#bookmarkCopy').textContent = TXT[lang].bookmarkCopy;
+        renderBookmarks();
       }
       updateProgress();
     }
@@ -448,6 +541,7 @@
       list.forEach((a, i)=>{
         const item = document.createElement('div');
         item.className = 'card rec';
+        item.style.position = 'relative';
         const tag = document.createElement('div');
         tag.className = 'label';
         tag.textContent = labelBadge(a, i);
@@ -463,6 +557,19 @@
         item.append(tag,title,purpose,engage);
         const contactInfo = renderContactInfo(a);
         item.appendChild(contactInfo);
+        const bookmarkBtn = document.createElement('button');
+        bookmarkBtn.className = 'bookmark-btn';
+        bookmarkBtn.innerHTML = isBookmarked(a.id) ? '★' : '☆';
+        bookmarkBtn.title = TXT[lang].bookmarkAdd;
+        bookmarkBtn.addEventListener('click', ()=>{
+          if(isBookmarked(a.id)) removeBookmark(a.id);
+          else saveBookmark(a.id);
+          bookmarkBtn.innerHTML = isBookmarked(a.id) ? '★' : '☆';
+        });
+        bookmarkBtn.style.position = 'absolute';
+        bookmarkBtn.style.top = '12px';
+        bookmarkBtn.style.right = '12px';
+        item.appendChild(bookmarkBtn);
         box.appendChild(item);
       });
     }
@@ -491,6 +598,7 @@
       list.forEach((a, i)=>{
         const item = document.createElement('div');
         item.className = 'card rec';
+        item.style.position = 'relative';
         const title = document.createElement('div');
         title.className = 'agency';
         title.textContent = `${a.name} — ${a.level}`;
@@ -500,6 +608,19 @@
         item.append(title, purpose);
         const contactInfo = renderContactInfo(a);
         item.appendChild(contactInfo);
+        const bookmarkBtn = document.createElement('button');
+        bookmarkBtn.className = 'bookmark-btn';
+        bookmarkBtn.innerHTML = isBookmarked(a.id) ? '★' : '☆';
+        bookmarkBtn.title = TXT[lang].bookmarkAdd;
+        bookmarkBtn.addEventListener('click', ()=>{
+          if(isBookmarked(a.id)) removeBookmark(a.id);
+          else saveBookmark(a.id);
+          bookmarkBtn.innerHTML = isBookmarked(a.id) ? '★' : '☆';
+        });
+        bookmarkBtn.style.position = 'absolute';
+        bookmarkBtn.style.top = '12px';
+        bookmarkBtn.style.right = '12px';
+        item.appendChild(bookmarkBtn);
         box.appendChild(item);
       });
     }
@@ -527,6 +648,7 @@
     qs('#enBtn').addEventListener('click', ()=> setLang('en'));
     qs('#esBtn').addEventListener('click', ()=> setLang('es'));
     qs('#searchBtn').addEventListener('click', ()=> goto('search'));
+    qs('#bookmarkHeaderBtn').addEventListener('click', ()=> goto('bookmarks'));
     qs('#searchInput').addEventListener('input', handleSearchInput);
     qs('#filterCity').addEventListener('click', ()=> toggleSearchFilter('City'));
     qs('#filterCounty').addEventListener('click', ()=> toggleSearchFilter('County'));
