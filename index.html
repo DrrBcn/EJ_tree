@@ -107,6 +107,17 @@
     .rec-header{ display:flex; align-items:flex-start; justify-content:space-between; gap:8px; margin-bottom:8px; }
     .rec-title{ flex:1; }
     .no-bookmarks{ text-align:center; color:var(--muted); padding:24px 12px; }
+    @media print {
+      body{ background:#fff; color:#000; }
+      header, footer, .small-btn, .lang-switch, .progress-container{ display:none !important; }
+      .app{ padding:0; gap:0; min-height:auto; }
+      .screen.active{ position:static; opacity:1; transform:none; }
+      .card{ border:1px solid #ccc; background:#fff; box-shadow:none; page-break-inside:avoid; }
+      .rec{ border:1px solid #000; background:#fff; color:#000; page-break-inside:avoid; }
+      .contact-link{ color:#0066cc; }
+      .bookmark-btn{ display:none; }
+      a{ color:#0066cc; text-decoration:underline; }
+    }
   </style>
 </head>
 <body>
@@ -197,6 +208,10 @@
         <div class="card">
           <div class="big" id="resHead">Who to contact</div>
           <p class="muted" id="resCopy">Start with the first agency below, then contact the others in order. If urgent, you can contact all of them.</p>
+          <div style="display:flex; gap:8px; margin-top:12px;">
+            <button id="shareBtn" class="small-btn" style="flex:1;" title="Share these results">📤 Share</button>
+            <button id="printBtn" class="small-btn" style="flex:1;" title="Print these results">🖨️ Print</button>
+          </div>
         </div>
         <div id="recList" style="display:grid; gap:12px; margin-top:12px;"></div>
       </section>
@@ -339,6 +354,41 @@
     let searchFilters = { City: true, County: true, State: true };
     let searchTerm = '';
     const qs = sel => document.querySelector(sel);
+
+    // --- Share & Print Functions ---
+    function generateResultsText(){
+      if(!selectedProblem) return '';
+      let text = `Environmental Justice Decision Tree Results\n`;
+      text += `Topic: ${selectedProblem.label}\n\n`;
+      text += `Recommended Agencies:\n`;
+      const candidates = AGENCIES.filter(a=> Array.isArray(a.topics) && a.topics.includes(selectedProblem.id));
+      candidates.sort((a,b)=> PRIORITY_ORDER.indexOf(a.level) - PRIORITY_ORDER.indexOf(b.level));
+      candidates.slice(0, 6).forEach((a, i)=>{
+        text += `\n${i+1}. ${a.name} (${a.level})\n`;
+        text += `Purpose: ${a.purpose}\n`;
+        if(a.phone) text += `Phone: ${a.phone}\n`;
+        if(a.email) text += `Email: ${a.email}\n`;
+        if(a.website) text += `Website: ${a.website}\n`;
+        if(a.hours) text += `Hours: ${a.hours}\n`;
+        if(a.address) text += `Address: ${a.address}\n`;
+        text += `How to Engage: ${a.engage}\n`;
+      });
+      return text;
+    }
+    function shareResults(){
+      const text = generateResultsText();
+      if(!text) return;
+      if(navigator.share){
+        navigator.share({title:'EJ Decision Tree Results', text:text});
+      } else {
+        const encoded = encodeURIComponent(text);
+        const subject = encodeURIComponent('Environmental Justice Agency Recommendations');
+        window.open(`mailto:?subject=${subject}&body=${encoded}`);
+      }
+    }
+    function printResults(){
+      window.print();
+    }
 
     // --- Bookmark management ---
     function getBookmarks(){
@@ -649,6 +699,8 @@
     qs('#esBtn').addEventListener('click', ()=> setLang('es'));
     qs('#searchBtn').addEventListener('click', ()=> goto('search'));
     qs('#bookmarkHeaderBtn').addEventListener('click', ()=> goto('bookmarks'));
+    qs('#shareBtn').addEventListener('click', shareResults);
+    qs('#printBtn').addEventListener('click', printResults);
     qs('#searchInput').addEventListener('input', handleSearchInput);
     qs('#filterCity').addEventListener('click', ()=> toggleSearchFilter('City'));
     qs('#filterCounty').addEventListener('click', ()=> toggleSearchFilter('County'));
