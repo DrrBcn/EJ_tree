@@ -8,9 +8,9 @@
       "label": "primary",
       "purpose": "The neutral party for EJ complaints against CDPHE.",
       "engage": "File a formal grievance via the EJ Grievance Process website.",
-      "phone": "+1-303-692-3000",
-      "email": "cdphe.ej@state.co.us",
-      "website": "https://cdphe.colorado.gov/ejustice",
+      "phone": "+1-303-549-9988",
+      "email": "ej_complaints@state.co.us",
+      "website": "https://cdphe.colorado.gov/ej/ombudsperson",
       "hours": "Mon-Fri 8am-5pm",
       "address": "4300 Cherry Creek Drive S, Denver, CO 80246"
     },
@@ -23,8 +23,8 @@
       "purpose": "Advises the state on EJ policy.",
       "engage": "Provide public comment at regular meetings to influence statewide strategy.",
       "phone": "+1-303-692-3000",
-      "email": "cdphe.ej@state.co.us",
-      "website": "https://cdphe.colorado.gov/ejustice",
+      "email": "cdphe_ej@state.co.us",
+      "website": "https://cdphe.colorado.gov/ej/advisory-board",
       "hours": "Mon-Fri 8am-5pm",
       "address": "4300 Cherry Creek Drive S, Denver, CO 80246"
     },
@@ -37,10 +37,10 @@
       "purpose": "Sets statewide air pollution regulations; relevant to cumulative air impacts.",
       "engage": "Testify at public rulemaking hearings.",
       "phone": "+1-303-692-3100",
-      "email": "air.quality@state.co.us",
-      "website": "https://cdphe.colorado.gov/air-pollution",
+      "email": "cdphe.aqcc@state.co.us",
+      "website": "https://cdphe.colorado.gov/aqcc",
       "hours": "Mon-Fri 8am-5pm",
-      "address": "4300 Cherry Creek Drive S, Denver, CO 80246"
+      "address": "4300 Cherry Creek Drive S, EDO-AQCC-A5, Denver, CO 80246"
     },
     {
       "id": "wqcc",
@@ -50,9 +50,9 @@
       "label": null,
       "purpose": "Sets water quality standards to protect drinking water.",
       "engage": "Provide comment at public rulemaking hearings.",
-      "phone": "+1-303-692-3500",
-      "email": "water.quality@state.co.us",
-      "website": "https://cdphe.colorado.gov/water-quality",
+      "phone": "+1-720-277-9262",
+      "email": "cdphe.wqcc@state.co.us",
+      "website": "https://cdphe.colorado.gov/wqcc",
       "hours": "Mon-Fri 8am-5pm",
       "address": "4300 Cherry Creek Drive S, Denver, CO 80246"
     },
@@ -64,9 +64,9 @@
       "label": "primary",
       "purpose": "Regulates oil, gas, and geothermal sites; frequent EJ concerns.",
       "engage": "File a complaint or comment on permits via the ECMC website.",
-      "phone": "+1-303-894-2000",
-      "email": "dnr.oilgas@state.co.us",
-      "website": "https://dnrweblink.dnr.state.co.us/weblink/",
+      "phone": "+1-303-894-2100",
+      "email": "dnr_ecmc@state.co.us",
+      "website": "https://ecmc.colorado.gov/",
       "hours": "Mon-Fri 8am-5pm",
       "address": "1313 Sherman Street, Denver, CO 80203"
     },
@@ -82,7 +82,7 @@
       "email": "consumer@puc.state.co.us",
       "website": "https://puc.colorado.gov/",
       "hours": "Mon-Fri 8am-5pm",
-      "address": "1580 Logan Street, Denver, CO 80203"
+      "address": "1560 Broadway, Suite 250, Denver, CO 80202"
     },
     {
       "id": "dola",
@@ -92,11 +92,11 @@
       "label": "primary",
       "purpose": "Addresses fair housing, healthy housing conditions, and mobile home park issues.",
       "engage": "Access landlord–tenant resources, mobile home park programs, and complaint forms on their website.",
-      "phone": "+1-303-864-7720",
-      "email": "dola.housing@state.co.us",
-      "website": "https://dola.colorado.gov/housing",
+      "phone": "+1-303-838-1200",
+      "email": "dola_web@state.co.us",
+      "website": "https://doh.colorado.gov/",
       "hours": "Mon-Fri 8am-5pm",
-      "address": "1313 Sherman Street, Denver, CO 80203"
+      "address": "1313 Sherman Street, Suite 518, Denver, CO 80203"
     },
     {
       "id": "cdot",
@@ -106,10 +106,10 @@
       "label": null,
       "purpose": "Manages highway projects which can create traffic noise and pollution.",
       "engage": "Comment on project plans through the public involvement portal.",
-      "phone": "+1-303-757-9011",
+      "phone": "+1-303-759-2368",
       "email": "public.information@dot.state.co.us",
       "website": "https://www.codot.gov/",
-      "hours": "Mon-Fri 8am-5pm",
+      "hours": "Mon-Fri 8am-4:30pm",
       "address": "2829 West Howard Place, Denver, CO 80204"
     },
     {
@@ -121,7 +121,7 @@
       "purpose": "Lead agency on health outcomes related to environmental factors.",
       "engage": "File a general environmental complaint for specific pollution events.",
       "phone": "+1-303-692-2000",
-      "email": "cdphe.webmaster@state.co.us",
+      "email": "cdphe.information@state.co.us",
       "website": "https://cdphe.colorado.gov/",
       "hours": "Mon-Fri 8am-5pm",
       "address": "4300 Cherry Creek Drive S, Denver, CO 80246"
@@ -135,10 +135,10 @@
       "purpose": "Enforces worker safety laws and wage protections.",
       "engage": "Submit concerns about workplace safety or wage theft via their website.",
       "phone": "+1-303-318-8000",
-      "email": "dole.webmaster@state.co.us",
+      "email": "cdle_labor_standards@state.co.us",
       "website": "https://cdle.colorado.gov/",
       "hours": "Mon-Fri 8am-5pm",
-      "address": "633 17th Street, Denver, CO 80202"
+      "address": "707 17th Street, Suite 150, Denver, CO 80202"
     },
     {
       "id": "cde",
@@ -148,8 +148,8 @@
       "label": null,
       "purpose": "Oversees school siting and healthy school environments.",
       "engage": "Address the State Board of Education at public meetings.",
-      "phone": "+1-303-866-6600",
-      "email": "cde.webmaster@state.co.us",
+      "phone": "+1-720-739-3238",
+      "email": "info@cde.state.co.us",
       "website": "https://www.cde.state.co.us/",
       "hours": "Mon-Fri 8am-5pm",
       "address": "201 East Colfax Avenue, Denver, CO 80203"
@@ -162,11 +162,11 @@
       "label": "localFirst",
       "purpose": "Final decisions on land use, budgets, and county policy that affect EJ.",
       "engage": "Speak at public hearings.",
-      "phone": "+1-970-498-7020",
+      "phone": "+1-970-498-7010",
       "email": "bocc@larimer.org",
-      "website": "https://www.larimer.org/",
+      "website": "https://www.larimer.gov/bocc",
       "hours": "Mon-Fri 8am-5pm",
-      "address": "200 West Oak Street, Fort Collins, CO 80521"
+      "address": "200 West Oak Street, Suite 2200, Fort Collins, CO 80521"
     },
     {
       "id": "dei",
@@ -176,11 +176,11 @@
       "label": null,
       "purpose": "Forum to raise concerns about whether county policies serve all communities.",
       "engage": "Provide public comment at public meetings.",
-      "phone": "+1-970-498-7020",
-      "email": "diversity@larimer.org",
-      "website": "https://www.larimer.org/",
+      "phone": "+1-970-498-7010",
+      "email": "bcc-admin@larimer.org",
+      "website": "https://www.larimer.gov/boards/equity-diversity-and-inclusion-advisory-board",
       "hours": "Mon-Fri 8am-5pm",
-      "address": "200 West Oak Street, Fort Collins, CO 80521"
+      "address": "200 West Oak Street, Suite 2200, Fort Collins, CO 80521"
     },
     {
       "id": "planC",
@@ -192,7 +192,7 @@
       "engage": "Testify at public meetings about specific development projects.",
       "phone": "+1-970-498-7820",
       "email": "planning@larimer.org",
-      "website": "https://www.larimer.org/planning",
+      "website": "https://www.larimer.gov/planning",
       "hours": "Mon-Fri 8am-5pm",
       "address": "1822 West Oak Street, Fort Collins, CO 80521"
     },
@@ -206,7 +206,7 @@
       "engage": "Contact the Environmental Health division with specific concerns.",
       "phone": "+1-970-498-6700",
       "email": "healthdept@larimer.org",
-      "website": "https://www.larimer.org/health",
+      "website": "https://www.larimer.gov/health",
       "hours": "Mon-Fri 8am-5pm",
       "address": "1525 Blue Spruce Drive, Fort Collins, CO 80524"
     },
@@ -220,7 +220,7 @@
       "engage": "Provide input on management plans via the website.",
       "phone": "+1-970-679-4570",
       "email": "parks@larimer.org",
-      "website": "https://www.larimer.org/natural-resources",
+      "website": "https://www.larimer.gov/natural-resources",
       "hours": "Mon-Fri 8am-5pm",
       "address": "1423 Oak Street, Fort Collins, CO 80521"
     },
@@ -248,7 +248,7 @@
       "engage": "Provide public comment at City Council meetings.",
       "phone": "+1-970-224-6000",
       "email": "city.council@fcgov.com",
-      "website": "https://www.fcgov.com/citycouncil/",
+      "website": "https://www.fcgov.com/citycouncil",
       "hours": "Mon-Fri 8am-5pm",
       "address": "300 Laporte Avenue, Fort Collins, CO 80521"
     },
@@ -262,7 +262,7 @@
       "engage": "Comment on development projects at public meetings.",
       "phone": "+1-970-224-6200",
       "email": "planning.info@fcgov.com",
-      "website": "https://www.fcgov.com/planning/",
+      "website": "https://www.fcgov.com/planning",
       "hours": "Mon-Fri 8am-5pm",
       "address": "281 North College Avenue, Fort Collins, CO 80521"
     },
@@ -276,7 +276,7 @@
       "engage": "Provide public comment or file a complaint via the website.",
       "phone": "+1-970-224-6144",
       "email": "humanrights@fcgov.com",
-      "website": "https://www.fcgov.com/humanrights/",
+      "website": "https://www.fcgov.com/humanrights",
       "hours": "Mon-Fri 8am-5pm",
       "address": "300 Laporte Avenue, Fort Collins, CO 80521"
     },
@@ -290,7 +290,7 @@
       "engage": "Report a concern or request mediation through the website.",
       "phone": "+1-970-224-6100",
       "email": "neighborhoodservices@fcgov.com",
-      "website": "https://www.fcgov.com/neighborhoodservices/",
+      "website": "https://www.fcgov.com/neighborhoodservices",
       "hours": "Mon-Fri 8am-5pm",
       "address": "281 North College Avenue, Fort Collins, CO 80521"
     },
@@ -304,7 +304,7 @@
       "engage": "Provide feedback on routes and projects via the FC Moves website.",
       "phone": "+1-970-221-6620",
       "email": "info@fcgov.com",
-      "website": "https://www.fcgov.com/transfort/",
+      "website": "https://www.fcgov.com/transfort",
       "hours": "Mon-Fri 8am-5pm",
       "address": "631 Linden Street, Fort Collins, CO 80524"
     },
@@ -318,7 +318,7 @@
       "engage": "Contact the department with questions or concerns through the website.",
       "phone": "+1-970-224-6142",
       "email": "environmental@fcgov.com",
-      "website": "https://www.fcgov.com/environmental/",
+      "website": "https://www.fcgov.com/environmental",
       "hours": "Mon-Fri 8am-5pm",
       "address": "281 North College Avenue, Fort Collins, CO 80521"
     },
@@ -332,7 +332,7 @@
       "engage": "Contact customer service for service issues; address policy at City Council.",
       "phone": "+1-970-221-6700",
       "email": "utilities@fcgov.com",
-      "website": "https://www.fcgov.com/utilities/",
+      "website": "https://www.fcgov.com/utilities",
       "hours": "Mon-Fri 8am-5pm",
       "address": "631 Linden Street, Fort Collins, CO 80524"
     }
