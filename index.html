@@ -107,6 +107,36 @@
     .rec-header{ display:flex; align-items:flex-start; justify-content:space-between; gap:8px; margin-bottom:8px; }
     .rec-title{ flex:1; }
     .no-bookmarks{ text-align:center; color:var(--muted); padding:24px 12px; }
+    [data-contrast="high"] {
+      --bg: #000000;
+      --fg: #FFFFFF;
+      --muted: #FFFFFF;
+      --accent1: #FFFF00;
+      --accent2: #FFFF00;
+      --accent3: #00FFFF;
+      --focus: #FFFF00;
+    }
+    [data-contrast="high"] body{
+      background: #000000;
+    }
+    [data-contrast="high"] .search-box,
+    [data-contrast="high"] .filter-btn,
+    [data-contrast="high"] .btn{
+      border-color: #FFFFFF;
+      color: #FFFFFF;
+      background: #000000;
+    }
+    [data-contrast="high"] .btn[data-selected="true"]{
+      border-color: #FFFF00;
+      background: #FFFF00;
+      color: #000000;
+    }
+    [data-contrast="high"] .filter-btn[data-active="true"]{
+      border-color: #FFFF00;
+      background: #FFFF00;
+      color: #000000;
+    }
+    .contrast-btn{ position:relative; font-size:1.2rem; cursor:pointer; }
     @media print {
       body{ background:#fff; color:#000; }
       header, footer, .small-btn, .lang-switch, .progress-container{ display:none !important; }
@@ -135,6 +165,7 @@
           <div class="lang-switch" role="group" aria-label="Language and search (header)">
             <button class="lang-btn" id="searchBtn" style="display:none;" title="Search agencies">🔍</button>
             <button class="lang-btn" id="bookmarkHeaderBtn" style="display:none;" title="View bookmarks">🔖</button>
+            <button class="lang-btn" id="contrastBtn" title="Toggle high contrast mode">◐</button>
             <button class="lang-btn" id="enBtn" aria-pressed="true">English</button>
             <button class="lang-btn" id="esBtn" aria-pressed="false">Español</button>
           </div>
@@ -354,6 +385,23 @@
     let searchFilters = { City: true, County: true, State: true };
     let searchTerm = '';
     const qs = sel => document.querySelector(sel);
+
+    // --- High Contrast Mode ---
+    function getContrast(){
+      try{ return localStorage.getItem('ej_contrast') === 'high' ? 'high' : 'normal'; }
+      catch(e){ return 'normal'; }
+    }
+    function setContrast(mode){
+      try{ localStorage.setItem('ej_contrast', mode); }
+      catch(e){}
+      if(mode === 'high') document.documentElement.setAttribute('data-contrast', 'high');
+      else document.documentElement.removeAttribute('data-contrast');
+      qs('#contrastBtn').setAttribute('aria-pressed', mode === 'high');
+    }
+    function toggleContrast(){
+      const current = getContrast();
+      setContrast(current === 'high' ? 'normal' : 'high');
+    }
 
     // --- Share & Print Functions ---
     function generateResultsText(){
@@ -714,7 +762,11 @@
     // touch responsiveness
     document.addEventListener('touchstart', ()=>{}, {passive:true});
 
+    // Events for contrast button
+    qs('#contrastBtn').addEventListener('click', toggleContrast);
+
     // Init
+    setContrast(getContrast());
     setLang('en');
     loadData();
   </script>
